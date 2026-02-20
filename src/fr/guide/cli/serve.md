@@ -22,4 +22,4 @@ Ou définissez `debug = true` dans la section `[options]` de votre fichier de co
 
 ## Exemple de sortie
 
-![output_example](../../guide/assets/server-log.gif)
+![output_example](../../../guide/assets/server-log.gif)
