@@ -1,16 +1,40 @@
-# Module Setup
+﻿# Module Setup
 
-## Install Deno
+## Install Deno 2.x
 
-If you have not yet installed Deno, go to the [website](https://deno.land), its just about running a single command.
+DFtpS 2.0+ requires **Deno 2.x**. If you have not yet installed Deno, go to the [website](https://deno.land):
 
-Well, there isn't anything else you'll need except Deno. But it's good to have an IDE, or just Editor, and in this case, [VS Code](https://code.visualstudio.com/) serves very well. Though JetBrains IDE support Deno with a Plugin too.
+```sh
+# macOS/Linux
+curl -fsSL https://deno.land/install.sh | sh
+
+# Windows (PowerShell)
+irm https://deno.land/install.ps1 | iex
+```
+
+## Add DFtpS to Your Project
+
+Add the `@dftp/server` package from JSR:
+
+```sh
+deno add @dftp/server
+```
+
+This will add the dependency to your `deno.json`:
+
+```json
+{
+  "imports": {
+    "@dftp/server": "jsr:@dftp/server@^2.0.8"
+  }
+}
+```
 
 ## VS Code Setup
 
-If you are using VS Code (recommended), go ahead and install "VSCode Deno" extension for complete Deno support.
-Open VS Code in your project directory, and add a new directory `.vscode` with a file `settings.json` in it.
-Write the following contents into the file,
+If you are using VS Code (recommended), install the "Deno" extension for complete Deno support.
+
+Open VS Code in your project directory, and add a new directory `.vscode` with a file `settings.json` in it:
 
 ```json
 {
@@ -18,6 +42,11 @@ Write the following contents into the file,
 }
 ```
 
-Deno is now enabled in your directory! If you are having issues, try reloading VS Code. with `CTRL + Shift + P` and search `Reload Windows`.
+Deno is now enabled in your directory! If you are having issues, try reloading VS Code with `CTRL + Shift + P` and search `Reload Window`.
 
-To learn more about the module [it’s here](./module/simple).
+## Links
+
+- **JSR**: [jsr.io/@dftp/server](https://jsr.io/@dftp/server)
+- **GitHub**: [github.com/MNLaugh/dftps](https://github.com/MNLaugh/dftps)
+
+To learn more about the module [it is here](./module/simple).

@@ -5,9 +5,9 @@
   "main": "index.js",
   "authors": {
     "name": "MNLaugh",
-    "email": "contact@devartsite.com"
+    "email": "contact@mnlaugh.com"
   },
-  "repository": "https://github.com/DevArtSite/dftps-guide",
+  "repository": "https://github.com/MNLaugh/dftps-guide",
   "scripts": {
     "dev": "vuepress dev src",
     "build": "vuepress build src"

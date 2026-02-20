@@ -1,77 +1,90 @@
-# Software Setup
+﻿# Software Setup
 
-## Introduction of setup
+## Introduction
 
-For the sake of ease, I opted for a Deno-style installation, so to install DFtpS you just need to call a bash script stored in the project’s repo git and run it with root privileges **is very important**.
+DFtpS can be installed as a standalone CLI application. Pre-compiled binaries are available for Linux, macOS, and Windows.
 
-**It is very important to start the installation with root rights, because at the time of installation the executable is stored in the "/usr/bin" directory and the software configuration file in the "/etc" folder and only the root user normally has access to these two folders.**
+## Download binaries
 
-**For the moment this project is only compatible with the linux system.**
+Download the pre-compiled binary for your platform from [GitHub Releases](https://github.com/MNLaugh/dftps/releases):
 
-## Install
+| Platform | Archive |
+|----------|---------|
+| Linux x64 | `dftps-linux-x64.tar.gz` |
+| macOS Intel | `dftps-macos-x64.tar.gz` |
+| macOS Apple Silicon | `dftps-macos-arm64.tar.gz` |
+| Windows x64 | `dftps-windows-x64.zip` |
+
+## Install via script (Linux/macOS)
 
 ```sh
-curl -fsSL https://deno.land/x/dftps/install.sh | sudo sh
+curl -fsSL https://raw.githubusercontent.com/MNLaugh/dftps/main/install.sh | sh
 ```
 
-## Install Specific Version
+::: tip First Launch
+On first launch, the CLI automatically creates the config file at `/etc/dftps.toml`.
+:::
 
-```sh
-curl -fsSL https://deno.land/x/dftps/install.sh | sudo sh -s v1.0.0
-```
+## Configuration
 
-## After install
-
-After the installation you will be asked to edit the configuration file in "/etc/dftps.toml".
+Edit the configuration file `/etc/dftps.toml`:
 
 ```sh
 sudo nano /etc/dftps.toml
 ```
 
-Here is an example of this file:
-
-```ini
-#ftp server default config file
+```toml
 [addr]
-  port = 21
+port = 21
 # hostname = "127.0.0.1"
 
 [options]
-  # Url for passive connection.
-  pasvUrl = "127.0.0.1"
-  # Minimum port for passive connection.
-  pasvMin = 1024
-  # Maximum port for passive connection.
-  pasvMax = 65535
-  # Handle anonymous connexion. true || false
+# debug = true
+pasvUrl = "127.0.0.1"
+pasvMin = 1024
+pasvMax = 65535
 # anonymous = false
-  # Sets the format to use for file stat queries such as "LIST".
-# fileFormat?: string;
-  # Array of commands that are not allowed
-# blacklist?: string[];
-  # Url of webhook like Discord webhook
-# webhook="webhook-url"
+# blacklist = ["DELE", "RMD"]
+# webhook = "https://discord.com/api/webhooks/..."
+
+# TLS Configuration (optional)
+# [tls]
+#   certFile = "./cert.pem"
+#   keyFile = "./key.pem"
 
 [database]
-  # Select your connector type ("MariaDB" | "MongoDB" | "MySQL" | "PostgreSQL" | "SQLite")
-  #connector = "MariaDB"
-
-  # MariaDB, MySQL, PostgreSQL Example
-  #database = "database-name"
-  #host = "host"
-  #username = "username"
-  #password = "password"
-  #port = port
-
-  # MongoDB Example
-  #"mongodb://127.0.0.1:27017"
-  #uri = "mongodb-url"
-  #database = "database-name"
-
-  # SQLite Example
-  #filepath = "sqlite file path"
+connector = "SQLite"
+filepath = "./dftps.db"
 ```
 
-Once you have edited the configuration file correctly you can use the CLI interface to interact with our software and start your ftp server.
+::: tip Database Support
+**Version 2.0+** uses SQLite exclusively for better performance and simpler deployment.
+:::
 
-To learn more about the CLI interface [it’s here](./cli).
+## CLI Usage
+
+### Add a user
+
+```sh
+dftps user add --username admin --password secret --root /srv/ftp --uid 1000 --gid 1000
+```
+
+### List users
+
+```sh
+dftps user
+```
+
+### Start the server
+
+```sh
+dftps serve
+```
+
+### Update to latest version
+
+```sh
+dftps upgrade
+```
+
+To learn more about the CLI interface [it is here](./cli).

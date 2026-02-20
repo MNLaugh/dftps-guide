@@ -1,41 +1,41 @@
-﻿# Example with database
+# Exemple avec base de données
 
-> This example shows you how to use the FTP server with the built-in SQLite database and Argon2 password hashing.
+> Cet exemple montre comment utiliser le serveur FTP avec la base de données SQLite intégrée et le hashage de mot de passe Argon2.
 
-::: tip Database Support
-**Version 2.0+** uses SQLite exclusively via `@db/sqlite` for better performance and simpler deployment.
+::: tip Support Base de Données
+**Version 2.0+** utilise exclusivement SQLite via `@db/sqlite` pour de meilleures performances et un déploiement simplifié.
 :::
 
 ## Import
 
-Add the package to your project:
+Ajoutez le package à votre projet :
 
 ```sh
 deno add @dftp/server
 ```
 
-Import the server, database utilities and Argon2:
+Importez le serveur, les utilitaires de base de données et Argon2 :
 
 ```ts
 import { createDb, Server, Users } from "@dftp/server";
 import { hash, verify } from "@node-rs/argon2";
 ```
 
-## Initialize database
+## Initialiser la base de données
 
-SQLite is the only supported database connector:
+SQLite est le seul connecteur de base de données supporté :
 
 ```ts
-// Initialize SQLite database
+// Initialiser la base de données SQLite
 createDb({ connector: "SQLite", filepath: "./users.db" });
 ```
 
-## Create users
+## Créer des utilisateurs
 
-Use Argon2id for secure password hashing:
+Utilisez Argon2id pour un hashage sécurisé des mots de passe :
 
 ```ts
-// Create a user with hashed password
+// Créer un utilisateur avec mot de passe hashé
 Users.create({
   username: "admin",
   password: await hash("secret"),
@@ -45,9 +45,9 @@ Users.create({
 });
 ```
 
-## Handle connections
+## Gérer les connexions
 
-Authenticate users against the database:
+Authentifiez les utilisateurs contre la base de données :
 
 ```ts
 const server = new Server({ port: 21 });
@@ -64,16 +64,16 @@ for await (const conn of server) {
 }
 ```
 
-## Full example
+## Exemple complet
 
 ```ts
 import { createDb, Server, Users } from "@dftp/server";
 import { hash, verify } from "@node-rs/argon2";
 
-// Initialize database
+// Initialiser la base de données
 createDb({ connector: "SQLite", filepath: "./users.db" });
 
-// Create a user (run once)
+// Créer un utilisateur (exécuter une fois)
 Users.create({
   username: "admin",
   password: await hash("secret"),
@@ -82,9 +82,9 @@ Users.create({
   gid: 1000,
 });
 
-// Start server
+// Démarrer le serveur
 const server = new Server({ port: 21 });
-console.log("FTP server listening on port 21");
+console.log("Serveur FTP en écoute sur le port 21");
 
 for await (const conn of server) {
   conn.on("login", async ({ username, password }, resolve, reject) => {

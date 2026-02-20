@@ -1,15 +1,25 @@
-# Run server
+﻿# Run server
 
-To launch your server you just need to execute the following command with root privileges.
-
-> Remember that before executing this command you must have edited the configuration file which should normally be at `/etc/dftps.toml`, If you have not done so, refer to [Software Setup](../soft-setup.html#after-install)
+To launch your server:
 
 ```sh
-sudo dftps serve
+dftps serve
 ```
 
-You can enable debug mode by adding `-d` to the command.
+::: tip First Launch
+On first launch, the CLI automatically creates the config file at `/etc/dftps.toml`. You can then edit it to customize your server settings.
+:::
 
-> *For this example I deliberately added a delay of 2000ms between each server response.*
+## Debug mode
+
+You can enable debug mode by adding `-d` or `--debug` to the command:
+
+```sh
+dftps serve -d
+```
+
+Or set `debug = true` in the `[options]` section of your config file.
+
+## Example output
 
 ![output_example](../assets/server-log.gif)

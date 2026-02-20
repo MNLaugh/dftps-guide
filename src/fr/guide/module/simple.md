@@ -1,30 +1,30 @@
-﻿# Simple example
+# Exemple simple
 
-> In this example you will see how to import our dependencies and how to use them.
+> Dans cet exemple, vous verrez comment importer nos dépendances et comment les utiliser.
 
 ## Import
 
-Add the package to your project:
+Ajoutez le package à votre projet :
 
 ```sh
 deno add @dftp/server
 ```
 
-Then import:
+Puis importez :
 
 ```ts
 import { Server } from "@dftp/server";
 ```
 
-## Server options
+## Options du serveur
 
-Create an instance of Server with these options:
+Créez une instance de Server avec ces options :
 
 ```ts
 const server = new Server({ port: 21 });
 ```
 
-### With TLS/SSL support
+### Avec support TLS/SSL
 
 ```ts
 const server = new Server({
@@ -34,9 +34,9 @@ const server = new Server({
 });
 ```
 
-## Handle connections
+## Gérer les connexions
 
-Wait for connections and handle authentication using the `on("login")` event:
+Attendez les connexions et gérez l'authentification avec l'événement `on("login")` :
 
 ```ts
 for await (const conn of server) {
@@ -50,13 +50,13 @@ for await (const conn of server) {
 }
 ```
 
-## Full example
+## Exemple complet
 
 ```ts
 import { Server } from "@dftp/server";
 
 const server = new Server({ port: 21 });
-console.log("FTP server listening on port 21");
+console.log("Serveur FTP en écoute sur le port 21");
 
 for await (const conn of server) {
   conn.on("login", async ({ username, password }, resolve, reject) => {
@@ -69,7 +69,7 @@ for await (const conn of server) {
 }
 ```
 
-## With TLS/SSL
+## Avec TLS/SSL
 
 ```ts
 import { Server } from "@dftp/server";
@@ -80,7 +80,7 @@ const server = new Server({
   key: Deno.readTextFileSync("key.pem"),
 });
 
-console.log("FTP server with TLS listening on port 21");
+console.log("Serveur FTP avec TLS en écoute sur le port 21");
 
 for await (const conn of server) {
   conn.on("login", async ({ username, password }, resolve, reject) => {
