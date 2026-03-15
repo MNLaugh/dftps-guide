@@ -4,7 +4,7 @@
 
 ## What is DFtpS?
 
-DFtpS is a modern FTP server built for Deno 2.x. Version 2.0.8 has been fully modernized with:
+DFtpS is a modern FTP server built for Deno 2.x. Version 2.1.0 has been fully modernized with:
 
 - **JSR-based imports** (`@std/*`, `@db/sqlite`, `@cliffy/*`)
 - **SQLite database** via `@db/sqlite` native

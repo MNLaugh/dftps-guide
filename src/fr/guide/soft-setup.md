@@ -9,7 +9,7 @@ DFtpS peut être installé comme application CLI autonome. Des binaires pré-com
 Téléchargez le binaire pré-compilé pour votre plateforme depuis [GitHub Releases](https://github.com/MNLaugh/dftps/releases) :
 
 | Plateforme | Archive |
-|------------|---------|
+| ------------ | --------- |
 | Linux x64 | `dftps-linux-x64.tar.gz` |
 | macOS Intel | `dftps-macos-x64.tar.gz` |
 | macOS Apple Silicon | `dftps-macos-arm64.tar.gz` |
